@@ -1,0 +1,46 @@
+<!-- //TODO Descobrir se o erro de não ser carregado a foto está aqui -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotos de Instagram da Rocketseat</title>
+    <style>
+        .container {
+            display: flex;
+            gap: .4rem;
+        }
+        li {
+            list-style: none;
+        }
+        li img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+    </div>
+
+    <script>
+        
+        (async() => {
+            // Abrir o Arquivo de Dados (json)
+            const response = await fetch('./instagram.json')
+            const data = await response.json();
+
+            // Formatar os dados para enviar para o html
+            const htmlList = data.map( ({src}) => `<li><img src="${src}"></li>`).join('');
+
+            // Colocar no HTML
+            document.querySelector('.container').innerHTML = htmlList;
+
+        })();
+
+    </script>
+</body>
+</html>
